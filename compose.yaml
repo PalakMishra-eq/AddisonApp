@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  addison-application:
+    networks:
+     - ${ORG_NAME}
+    deploy:
+     replicas: APP_REPLICAS
+     restart_policy:
+      condition: on-failure
+      delay: 5s
+      max_attempts: 3
+      window: 120s
+     labels:
+      APP: ${APP_NAME}
+      com.docker.ucp.access.label: ${UCP_GROUP_LABEL}
+      com.docker.lb.hosts: ${GLOBAL_HOSTNAME},${LOCAL_HOSTNAME}
+      com.docker.lb.network: ${SERVICENAME}_${ORG_NAME}
+      com.docker.lb.port: ${APP_PORT}
+      com.docker.lb.ssl_passthrough: "true"
+      com.docker.stack.image: "${DOCKER_REGISTRY}/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_TAG}"
+    image: "${DOCKER_REGISTRY}/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_TAG}"
+    environment:
+     - APP_ENV=$APP_ENV
+     - http_proxy=$http_proxy
+     - HTTP_PROXY=$http_proxy
+     - https_proxy=$https_proxy
+     - HTTPS_PROXY=$https_proxy
+     - no_proxy=$no_proxy
+     - NO_PROXY=$no_proxy
+     - VAULT_ADDR=$VAULT_ADDR
+     - VAULT_APPLICATION_PATH=$VAULT_APPLICATION_PATH
+     - VAULT_GITHUB_TOKEN=$VAULT_GITHUB_TOKEN
+     - VAULT_SKIP_VERIFY=$VAULT_SKIP_VERIFY
+    labels:
+     - "Version=${DOCKER_IMAGE_TAG}"
+
+networks:
+  ORG_NETWORK_NAME:
+    driver: overlay

@@ -1,0 +1,53 @@
+{
+    "id": "your-service-path",
+    "cpus": 0.5,
+    "mem": 192.0,
+    "disk": 5.0,
+    "instances": 1,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "network": "BRIDGE",
+            "image": "your-docker-image-location",
+            "portMappings": [{
+                "hostPort": 0,
+                "containerPort": 8443,
+                "protocol": "tcp",
+                "name": "default"
+            }],
+            "privileged": false,
+            "parameters": [],
+            "forcePullImage": false
+        }
+    },
+    "env": {
+      "APP_ENV": "your-application-environment",
+      "VAULT_SKIP_VERIFY": "1",
+      "VAULT_GITHUB_TOKEN": "your-github-token",
+      "VAULT_ADDR": "vault-address",
+      "VAULT_APPLICATION_PATH": "your-vault-secret-path"
+    },
+
+    "healthChecks": [{
+        "gracePeriodSeconds": 90,
+        "intervalSeconds": 30,
+        "timeoutSeconds": 15,
+        "maxConsecutiveFailures": 2,
+        "portIndex": 0,
+        "path": "/healthcheck",
+        "protocol": "MESOS_HTTPS",
+        "delaySeconds": 15,
+        "ignoreHttp1xx": false
+    }],
+
+    "labels": {
+        "DCOS_SERVICE_SCHEME": "https",
+        "DCOS_SERVICE_NAME": "service",
+        "DCOS_SERVICE_PORT_INDEX": "0",
+        "HAPROXY_GROUP": "external",
+        "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
+        "HAPROXY_0_MODE": "tcp",
+        "HAPROXY_0_VHOST": "your-application-url.apps.dcos.hpecorp.net",
+        "lastChangedBy": "last-changed-by-user"
+    }
+}

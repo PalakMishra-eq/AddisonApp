@@ -1,0 +1,100 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "description": "Hello world",
+  "main": "server.js",
+  "publishConfig": {
+    "registry": "https://npmjs.itcs.hpecorp.net"
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "test": "lab --coverage --verbose --timeout 10000",
+    "start": "nodemon server.js",
+    "debug": "node --debug=5858 server.js",
+    "lint": "eslint .",
+    "lint:errors": "eslint . --quiet",
+    "setup": "node ./scripts/setup.js"
+  },
+  "keywords": [
+    "api",
+    "apis",
+    "integration",
+    "rest",
+    "swagger"
+  ],
+  "author": "",
+  "addison-template": "1.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "@hpe/addison-engine": "^1.0.0-alpha.1",
+    "@hpe/entmon-registration": "^1.0.1",
+    "@hpe/generator-addison": "^1.1.0",
+    "@hpe/node-ssl-hpe-root-cas": "^2.0.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "8.2.0",
+    "joi": "^17.3.0",
+    "nodemon": "^3.0.3"
+  },
+  "devDependencies": {
+    "@hapi/code": "^8.0.1",
+    "@hapi/lab": "^24.2.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-import": "2.22.1",
+    "node-forge": "^0.10.0"
+  },
+  "com_hpe": {
+    "eprid": "",
+    "ucmdb": {
+      "id": "",
+      "type": "eprid",
+      "url": "http//apate.corp.hpe.com"
+    },
+    "origin": {
+      "format": "swagger",
+      "url": "https://raw.github.hpe.com/ChangeRecords/fwd-api/master/api/docs/swagger.json",
+      "version": 2
+    },
+    "data-subject": [
+      ""
+    ],
+    "system-of-record": [
+      ""
+    ],
+    "datastore": "",
+    "access": "",
+    "native": true,
+    "addison": true,
+    "audience": [
+      ""
+    ],
+    "app-context": "",
+    "scm": {
+      "team": ""
+    },
+    "registry": "",
+    "audit-policy": "",
+    "organization": "",
+    "ldap-groups-auth": [
+      ""
+    ],
+    "op-org": "",
+    "name-space": "",
+    "service-name": "",
+    "service-type": [
+      ""
+    ],
+    "service-alias": "",
+    "secret-policy": "",
+    "label": "",
+    "keywords": [
+      ""
+    ],
+    "governance-category": "",
+    "logo": "",
+    "metadata-version": "1",
+    "environment": {}
+  }
+}
